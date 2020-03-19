@@ -7,12 +7,20 @@
 
 std::vector<Client> g_clients;
 
-bool addMoney(std::string clientNumber);
+bool readFile();
+
+bool updateFile();
+
+bool addMoney(std::string clientNumber, double amount);
 
 bool getMoneyAmount(std::string clientNumber);
 
-bool getMoney(std::string clientNumber);
+bool getMoney(std::string clientNumber, double amount);
 
 void listClients();
+
+bool addNewClient();
+
+bool removeClient();
 
 #endif
