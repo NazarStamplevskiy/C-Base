@@ -19,8 +19,8 @@ bool getMoney(std::string clientNumber, double amount);
 
 void listClients();
 
-bool addNewClient();
+bool addNewClient(std::string name, std::string surname, std::string number, double money);
 
-bool removeClient();
+bool removeClient(std::string number);
 
 #endif
