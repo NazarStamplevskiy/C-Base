@@ -1,8 +1,9 @@
 #include "Client.h"
 
-Client::Client(std::string name, std::string surname, double money)
+Client::Client(std::string name, std::string surname, std::string number, double money)
     : m_name{ name }
     , m_surname{ surname }
+    , m_number { number }
     , m_money { money }
 {}
 
@@ -29,4 +30,9 @@ std::string Client::getName()
 std::string Client::getSurname()
 {
     return m_surname;
+}
+
+std::string Client::getNumber()
+{
+    return m_number;
 }
