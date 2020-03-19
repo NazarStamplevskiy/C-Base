@@ -3,9 +3,6 @@
 
 #include "Client.h"
 #include <string>
-#include <vector>
-
-std::vector<Client> g_clients;
 
 bool readFile();
 
