@@ -67,7 +67,6 @@ bool readFile()
         in >> number;
         if(!in || in.fail())
         {
-            std::cout << "Client number bad data\n";
             return false;
         }
 
@@ -112,7 +111,7 @@ bool updateFile()
 
     for(auto it : g_clients)
     {
-        out << it.getNumber() << " " << it.getName() << " " << it.getSurname() << " " << it.getMoneyAmount();
+        out << it.getNumber() << " " << it.getName() << " " << it.getSurname() << " " << it.getMoneyAmount() << std::endl;
     }
 
     return true;
