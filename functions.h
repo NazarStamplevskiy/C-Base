@@ -24,4 +24,7 @@ std::string getTheRichestClient();
 
 double getTotalBankMoney();
 
+bool name_check(std::string str);
+bool number_check(std::string num);
+
 #endif

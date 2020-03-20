@@ -4,6 +4,9 @@
 #include <cctype>
 #include <vector>
 #include <iostream>
+using  std::string;
+using std::cout;
+using std::endl;
 
 static const std::string dataBaseFilePath {"DB.txt"};
 std::vector<Client> g_clients;
@@ -118,5 +121,128 @@ bool updateFile()
         out << it.getNumber() << " " << it.getName() << " " << it.getSurname() << " " << it.getMoneyAmount() << std::endl;
     }
 
+    return true;
+}
+
+bool name_check(string str)
+{
+    int pc = 0;
+    if (str.empty())
+    {
+        cout << "Incorrect: empty string. ";
+        return false;
+    }
+    if (str.size() >=32 )
+    {
+        cout << "Incorrect: lengt of your name is longer than 32! ";
+        cout << str.length();
+        return false;
+    }
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (str[i] == ' ')
+        {
+            pc++;
+        }
+        if (isdigit(str[i]))
+        {
+            cout << "Incorrect: Your name include numbers! ";
+            return false;
+            break;
+        }
+        if(iscntrl(str[i])||ispunct(str[i]))
+        {
+            cout << "Incorrect: Your name include graph:" << str[i]<<"  ";
+            return false;
+            break;
+        }
+        if (pc > 2)
+        {
+            cout << "Your name has more than 3 spaces! ";
+            return false;
+            break;
+        }
+    }
+    return true;
+}
+bool number_check(string num)
+{
+    int pc = 0;
+    if (num.empty())
+    {
+        cout << "Incorrect: empty string. " << endl;
+        return false;
+    }
+    if (num.size() > 8||num.size()<8)
+    {
+        cout << "Incorrect: lengt of your number is not 8! " << endl;
+        cout << num.length();
+        return false;
+    }
+    
+
+    for (int i = 0; i < num.size(); i++)
+    {
+
+        if (num[i] == ' ')
+        {
+            pc++;
+        }
+        if (!isdigit(num[i]))
+        {
+            cout << "Incorrect: Your name include symbol! " << endl;
+            return false;
+            break;
+        }
+        if (iscntrl(num[i]) || ispunct(num[i]))
+        {
+            cout << "Incorrect: Your name include graph:" << num[i] << "  " << endl;
+            return false;
+            break;
+        }
+        if (pc >=1)
+        {
+            cout << "Your number has spaces! " << endl;
+            return false;
+            break;
+        }
+    }
+    return true;
+}
+
+bool addNewClient(std::string name, std::string surname, std::string number, double money)
+{
+    for (int i = 0; i < g_clients.size(); i++)
+    {
+        if (g_clients[i].getNumber() == number)
+        {
+            cout << "This accout is already in database! " << endl;
+            return false;
+            break;
+        }
+    }
+    g_clients.push_back(Client{ name,surname,number,money});
+    return true;
+}
+
+bool removeClient(std::string number)
+{
+    for (auto it=g_clients.begin();it!=g_clients.end();++it)
+    {
+        if (it->getNumber() == number)
+        {
+            cout << "Ok deleting..." << endl;
+            g_clients.erase(it);
+            return true;
+            break;
+        }
+        else
+        {
+            cout << "There is not account with this number: " << number << endl;
+            return false;
+            break;
+        }
+    }
+    
     return true;
 }
