@@ -67,6 +67,10 @@ bool readFile()
         in >> number;
         if(!in || in.fail())
         {
+            if(in.eof())
+            {
+                return true;
+            }
             return false;
         }
 

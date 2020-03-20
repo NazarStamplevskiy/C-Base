@@ -20,4 +20,8 @@ bool addNewClient(std::string name, std::string surname, std::string number, dou
 
 bool removeClient(std::string number);
 
+std::string getTheRichestClient();
+
+double getTotalBankMoney();
+
 #endif
