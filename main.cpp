@@ -152,7 +152,7 @@ int main(int argc, char* argv[])
 			{
 				std::cout << "enter number\n";
 				std::cin >> client_number;
-				if(num_check(client_number))
+				if(number_check(client_number))
 				{
 					flag = false;
 				}
@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
 			{
 				std::cout << "enter client number\n";
 				std::cin >> client_number;
-				if (check_num(client_number))
+				if (number_check(client_number))
 				{
 					flag = false;
 				}
@@ -232,7 +232,7 @@ int main(int argc, char* argv[])
 			{
 				std::cout << "enter number of client\n";
 				std::cin >> client_number;
-				if(check_num(client_number))
+				if(number_check(client_number))
 				{
 					flag = false;
 				}
