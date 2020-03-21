@@ -126,7 +126,7 @@ bool updateFile()
 
 bool name_check(string str)
 {
-    int pc = 0;
+    
     if (str.empty())
     {
         cout << "Incorrect: empty string. ";
@@ -142,26 +142,20 @@ bool name_check(string str)
     {
         if (str[i] == ' ')
         {
-            pc++;
+            cout << "Incorrect: Your number include spaces";
         }
         if (isdigit(str[i]))
         {
             cout << "Incorrect: Your name include numbers! ";
             return false;
-            break;
+
         }
         if(iscntrl(str[i])||ispunct(str[i]))
         {
             cout << "Incorrect: Your name include graph:" << str[i]<<"  ";
             return false;
-            break;
         }
-        if (pc > 2)
-        {
-            cout << "Your name has more than 3 spaces! ";
-            return false;
-            break;
-        }
+        
     }
     return true;
 }
@@ -190,21 +184,21 @@ bool number_check(string num)
         }
         if (!isdigit(num[i]))
         {
-            cout << "Incorrect: Your name include symbol! " << endl;
+            cout << "Incorrect: Your number include letters! " << endl;
             return false;
-            break;
+            
         }
         if (iscntrl(num[i]) || ispunct(num[i]))
         {
-            cout << "Incorrect: Your name include graph:" << num[i] << "  " << endl;
+            cout << "Incorrect: Your number include graph:" << num[i] << "  " << endl;
             return false;
-            break;
+            
         }
         if (pc >=1)
         {
             cout << "Your number has spaces! " << endl;
             return false;
-            break;
+            
         }
     }
     return true;
