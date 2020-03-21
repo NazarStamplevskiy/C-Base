@@ -177,7 +177,6 @@ bool number_check(string num)
 
     for (int i = 0; i < num.size(); i++)
     {
-
         if (num[i] == ' ')
         {
             pc++;
@@ -185,20 +184,17 @@ bool number_check(string num)
         if (!isdigit(num[i]))
         {
             cout << "Incorrect: Your number include letters! " << endl;
-            return false;
-            
+            return false; 
         }
         if (iscntrl(num[i]) || ispunct(num[i]))
         {
             cout << "Incorrect: Your number include graph:" << num[i] << "  " << endl;
-            return false;
-            
+            return false;  
         }
         if (pc >=1)
         {
             cout << "Your number has spaces! " << endl;
             return false;
-            
         }
     }
     return true;
