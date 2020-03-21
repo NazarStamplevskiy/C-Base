@@ -167,12 +167,7 @@ bool number_check(string num)
         cout << "Incorrect: empty string. " << endl;
         return false;
     }
-    if (num.size() > 8||num.size()<8)
-    {
-        cout << "Incorrect: lengt of your number is not 8! " << endl;
-        cout << num.length();
-        return false;
-    }
+   
     
 
     for (int i = 0; i < num.size(); i++)
