@@ -7,7 +7,7 @@
 
 std::vector<Client> g_clients;
 
-bool addMoney(std::string clientNumber);
+bool addMoney(double amount, std::string clientNumber);
 
 bool getMoneyAmount(std::string clientNumber);
 
