@@ -132,12 +132,7 @@ bool name_check(string str)
         cout << "Incorrect: empty string. ";
         return false;
     }
-    if (str.size() >=32 )
-    {
-        cout << "Incorrect: lengt of your name is longer than 32! ";
-        cout << str.length();
-        return false;
-    }
+    
     for (int i = 0; i < str.size(); i++)
     {
         if (str[i] == ' ')
@@ -203,7 +198,7 @@ bool addNewClient(std::string name, std::string surname, std::string number, dou
         {
             cout << "This accout is already in database! " << endl;
             return false;
-            break;
+            
         }
     }
     g_clients.push_back(Client{ name,surname,number,money});
@@ -219,13 +214,13 @@ bool removeClient(std::string number)
             cout << "Ok deleting..." << endl;
             g_clients.erase(it);
             return true;
-            break;
+            
         }
         else
         {
             cout << "There is not account with this number: " << number << endl;
             return false;
-            break;
+           
         }
     }
     
