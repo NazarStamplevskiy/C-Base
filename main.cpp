@@ -3,7 +3,7 @@
 #include "functions.h"
 #include <string>
 
-//const int cmd_size = 256;	// const size for cmd
+
 
 void print_comands() {
 	std::cout << " Welcome to C-Base prog \n "
