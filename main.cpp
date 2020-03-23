@@ -3,40 +3,41 @@
 #include "functions.h"
 #include <string>
 
-const int b8 = 256;
+//const int cmd_size = 256;	// const size for cmd
 
 void print_comands() {
-	std::cout << " Welcome to C-Base prog \n ";
-	std::cout << " Enter num for command: \n ";
-	std::cout << "1: Show clients list \n ";
-	std::cout << "2: Add client \n ";
-	std::cout << "3: Add money \n ";
-	std::cout << "4: Delete client \n ";
-	std::cout << "5: Show richest client \n ";
-	std::cout << "6: Show Total bank money \n ";
+	std::cout << " Welcome to C-Base prog \n "
+			  << " Enter num for command: \n "
+			  << "1: Show clients list \n "
+			  << "2: Add client \n "
+			  << "3: Add money \n "
+			  << "4: Delete client \n "
+			  << "5: Show richest client \n "
+			  << "6: Show Total bank money \n ";
 }
 
-bool check_cmd_by_num(char cmd[])
+bool check_cmd_by_num(std::string cmd)
 {	
-	if (cmd[1] == static_cast<char>(0)) 
+	int temp;
+	if (cmd.length == 1) 
 	{
 		for (int i = 1; i <= 6; i++)
 		{
-			if (cmd[0] == i) {
+			if (temp=std::atoi(cmd.c_str) == i)
+			{
 				return true;
 			}
-			else
-			{
-				return false;
-			}
+			
 		}
-	}	
+	}
+	return false;
 }
 
-int check_cmd_by_word(char cmd[]) {
+int check_cmd_by_word(std::string cmd) 
+{
 	for (int i = 0; cmd[i] != static_cast<char>(0); i++)
 	{
-		//DONE: if command entered fully
+		//reDONE: if command entered fully
 		if (cmd=="show clients list") 
 		{
 			return 1;
@@ -57,7 +58,7 @@ int check_cmd_by_word(char cmd[]) {
 		{
 			return 5;
 		}
-		else if (cmd == "show Total bank money")
+		else if (cmd == "show total bank money")
 		{
 			return 6;
 		}
@@ -72,7 +73,7 @@ int check_cmd_by_word(char cmd[]) {
 int main(int argc, char* argv[])
 {
 	bool flag_global=false;
-	char cmd_word[b8];
+	std::string cmd_word;
 	bool flag = true;
 	int cmd_num;
 	//readfile
@@ -82,15 +83,16 @@ int main(int argc, char* argv[])
 		while (flag)
 		{
 			print_comands();
-			std::cin >> cmd_word;			//entering num or full of cmd
+														//entering num or full of cmd
+			std::getline(std::cin, cmd_word);
 			if(check_cmd_by_num(cmd_word))	//if enterd num
 			{
-				cmd_num = std::atoi(cmd_word);
+				cmd_num = std::atoi(cmd_word.c_str);
 				flag = false;
 			}
 			else if (check_cmd_by_word(cmd_word))
 			{
-				// DONE: add checking via word
+				// reDONE: add checking via word
 				cmd_num = check_cmd_by_word(cmd_word);
 				flag = false;
 			}
@@ -102,12 +104,12 @@ int main(int argc, char* argv[])
 
 		switch (cmd_num)
 		{
-		case 1:
+		case 1:																//showing list
 		{
 			listClients();
 			break;
 		}
-		case 2://addin client
+		case 2:																//addin client
 		{
 			std::string name;
 			std::string surname;
@@ -115,10 +117,10 @@ int main(int argc, char* argv[])
 
 			 flag = true;
 
-			while (flag) 
+			while (flag)													//entering name
 			{
 				std::cout << "enter name\n";
-				std::cin >> name;
+				std::getline(std::cin, name);
 				if (name_check(name))
 				{
 					flag = false; 
@@ -132,10 +134,11 @@ int main(int argc, char* argv[])
 
 			flag = true;
 
-			while (flag)
+			while (flag)													//entering surname
 			{
 				std::cout << "enter surname\n";
-				std::cin >> surname;
+				//std::cin >> surname;
+				std::getline(std::cin, surname);
 				if(name_check(surname))
 				{
 					flag = false;
@@ -148,11 +151,12 @@ int main(int argc, char* argv[])
 
 			flag = true;
 
-			while (flag)
+			while (flag)													//entering client number
 			{
 				std::cout << "enter number\n";
-				std::cin >> client_number;
-				if(num_check(client_number))
+				//std::cin >> client_number;
+				std::getline(std::cin, client_number);
+				if(number_check(client_number))
 				{
 					flag = false;
 				}
@@ -162,28 +166,26 @@ int main(int argc, char* argv[])
 				}
 			}
 
-			if (addNewClient(name, surname, client_number, 0)) 
-			{
-				addNewClient(name, surname, client_number, 0);
-			}
-			else 
-			{
-				std::cout << "unknown error occurred \n";
+			bool retVal = addNewClient(name, surname, client_number, 0);			//verifying: adding new client
 
-			};
+			if(!retVal)
+			{
+				std::cout << "Error occurred while adding new client \n";
+			}
 			break;
 		}
-		case 3:	//adding babki
+		case 3:																			//adding babki
 		{
 			std::string client_number;
-			char amount_word[b8];
+			std::string amount_word;
 			int amount;
 			bool flag = true;
-			while (flag) 
+			while (flag) 															//entering client number
 			{
 				std::cout << "enter client number\n";
-				std::cin >> client_number;
-				if (check_num(client_number))
+				std::getline(std::cin, client_number);
+
+				if (number_check(client_number))
 				{
 					flag = false;
 				}
@@ -195,10 +197,10 @@ int main(int argc, char* argv[])
 
 			flag = true;
 			
-			while (flag)
+			while (flag)															//entering amount
 			{
 				std::cout << "enter amount \n";
-				std::cin >> amount;
+				std::getline(std::cin, amount_word);
 				if (amount_check(amount_word)) 
 				{
 					amount = std::atoi(amount_word);
@@ -212,14 +214,14 @@ int main(int argc, char* argv[])
 
 			}
 
-			if (addMoney(client_num, amount)) 
+			bool retVal = addMoney(client_number, amount);
+																						//veryfying: adding money
+			if(!retVal)
 			{
-				addMoney(client_num, amount);
+				
+				std::cout << "Error occured while adding money\n";
+
 			}
-			else
-			{
-				std::cout << "unknown error occured\n";
-			};
 			break;
 			
 		}
@@ -228,11 +230,13 @@ int main(int argc, char* argv[])
 		{
 			std::string client_number;
 			flag = true;
-			while (flag)
+			while (flag)														// entering client num
 			{
 				std::cout << "enter number of client\n";
-				std::cin >> client_number;
-				if(check_num(client_number))
+				
+				std::getline(std::cin,client_number);
+
+				if(number_check(client_number))
 				{
 					flag = false;
 				}
@@ -241,13 +245,12 @@ int main(int argc, char* argv[])
 					std::cout << "incorect number\n";
 				}
 
-				if(removeClient(client_number))
+				bool retVal = removeClient(client_number);
+
+				if(!retVal)
 				{
-					removeClient(client_number);
-				}
-				else
-				{
-					std::cout << "unknown error occurred\n try again\n";
+					//removeClient(client_number);
+					std::cout << "Error occurred while deleting client\n";
 				}
 
 			}
