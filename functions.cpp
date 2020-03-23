@@ -4,6 +4,9 @@
 #include <cctype>
 #include <vector>
 #include <iostream>
+using  std::string;
+using std::cout;
+using std::endl;
 
 static const std::string dataBaseFilePath {"DB.txt"};
 std::vector<Client> g_clients;
@@ -119,4 +122,102 @@ bool updateFile()
     }
 
     return true;
+}
+
+bool name_check(string str)
+{
+    
+    if (str.empty())
+    {
+        cout << "Incorrect: empty string. ";
+        return false;
+    }
+    
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (str[i] == ' ')
+        {
+            cout << "Incorrect: Your number include spaces";
+        }
+        if (isdigit(str[i]))
+        {
+            cout << "Incorrect: Your name include numbers! ";
+            return false;
+
+        }
+        if(iscntrl(str[i])||ispunct(str[i]))
+        {
+            cout << "Incorrect: Your name include graph:" << str[i]<<"  ";
+            return false;
+        }
+        
+    }
+    return true;
+}
+bool number_check(string num)
+{
+    int pc = 0;
+    if (num.empty())
+    {
+        cout << "Incorrect: empty string. " << endl;
+        return false;
+    }
+   
+    
+
+    for (int i = 0; i < num.size(); i++)
+    {
+        if (num[i] == ' ')
+        {
+            cout << "Your number has spaces! " << endl;
+            return false;
+        }
+        if (!isdigit(num[i]))
+        {
+            cout << "Incorrect: Your number include letters! " << endl;
+            return false; 
+        }
+        if (iscntrl(num[i]) || ispunct(num[i]))
+        {
+            cout << "Incorrect: Your number include graph:" << num[i] << "  " << endl;
+            return false;  
+        }
+       
+    }
+    return true;
+}
+
+bool addNewClient(std::string name, std::string surname, std::string number, double money)
+{
+    for (int i = 0; i < g_clients.size(); i++)
+    {
+        if (g_clients[i].getNumber() == number)
+        {
+            cout << "This accout is already in database! " << endl;
+            return false;
+            
+        }
+    }
+    g_clients.push_back(Client{ name,surname,number,money});
+    updateFile();
+    return true;
+}
+
+bool removeClient(std::string number)
+{
+    for (auto it=g_clients.begin();it!=g_clients.end();++it)
+    {
+        if (it->getNumber() == number)
+        {
+            cout << "Ok deleting..." << endl;
+            g_clients.erase(it);
+            updateFile();
+            return true;
+            
+        }
+        
+    }
+    cout << "Sorry but we can't find this accout with this number: " << number << endl;
+    
+    return false;
 }
