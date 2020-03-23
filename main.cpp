@@ -5,7 +5,8 @@
 
 
 
-void print_comands() {
+void print_comands()
+{
 	std::cout << " Welcome to C-Base prog \n "
 			  << " Enter num for command: \n "
 			  << "1: Show clients list \n "
