@@ -221,3 +221,29 @@ bool removeClient(std::string number)
     
     return false;
 }
+
+//Хз чи тут взагалі шось може пахати, не впевнений чи g_client.getName це просто ім'я клієнта
+std::string getTheRichestClient()
+{
+    std::string RichestClient ;
+    double RichestMoney=0;
+    for(int i=0; i< g_clients.size();i++)
+    {
+        if(g_clients[i].getMoneyAmount >RichestMoney)//aбо g_clients[i].getMoney
+        {                                            //хз яка між ними різниця
+            RichestClient = g_clients[i].getName;
+            RichestMoney = g_clients[i].getMoneyAmount;
+        }
+    }
+return RichestClient;
+}
+
+double getTotalBankMoney()
+{
+    double TotalMoney=0;
+    for (int i=0;i<g_clients.size();i++)
+    {
+        TotalMoney+=g_clients[i].getMoneyAmount;
+    }
+    return TotalMoney;
+}//123
