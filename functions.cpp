@@ -169,7 +169,8 @@ bool number_check(string num)
     {
         if (num[i] == ' ')
         {
-            pc++;
+            cout << "Your number has spaces! " << endl;
+            return false;
         }
         if (!isdigit(num[i]))
         {
@@ -181,11 +182,7 @@ bool number_check(string num)
             cout << "Incorrect: Your number include graph:" << num[i] << "  " << endl;
             return false;  
         }
-        if (pc >=1)
-        {
-            cout << "Your number has spaces! " << endl;
-            return false;
-        }
+       
     }
     return true;
 }
