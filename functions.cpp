@@ -199,6 +199,7 @@ bool addNewClient(std::string name, std::string surname, std::string number, dou
         }
     }
     g_clients.push_back(Client{ name,surname,number,money});
+    updateFile();
     return true;
 }
 
@@ -210,16 +211,13 @@ bool removeClient(std::string number)
         {
             cout << "Ok deleting..." << endl;
             g_clients.erase(it);
+            updateFile();
             return true;
             
         }
-        else
-        {
-            cout << "There is not account with this number: " << number << endl;
-            return false;
-           
-        }
+        
     }
+    cout << "Sorry but we can't find this accout with this number: " << number << endl;
     
-    return true;
+    return false;
 }
